@@ -1,0 +1,60 @@
+{
+  "name": "dsh-preview-theme-dark",
+  "version": "1.0.0",
+  "description": "DSH 文档预览深色模式：预览标题栏一键切换浅色 / 深色，可跟随系统外观，也可选纯黑、墨黑、米黄、午夜蓝等纸张色；纯 CSS 重绘，不改文件内容。",
+  "author": "xiaoqiangch (https://github.com/xiaoqiangch)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xiaoqiangch/dsh-preview-theme-dark.git"
+  },
+  "homepage": "https://github.com/xiaoqiangch/dsh-preview-theme-dark#readme",
+  "bugs": "https://github.com/xiaoqiangch/dsh-preview-theme-dark/issues",
+  "type": "module",
+  "main": "lib/index.js",
+  "icon": "icon.svg",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg"
+  },
+  "files": [
+    "lib/",
+    "locale/*.json",
+    "icon.svg",
+    "cordis.patch.yml",
+    "README.md",
+    "CHANGELOG.md",
+    "LICENSE"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "dsh": ">=0.2.0-rc.1 <0.3.0-0"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": []
+    }
+  },
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "preview",
+    "pdf",
+    "office",
+    "theme",
+    "background",
+    "dark-mode",
+    "dark"
+  ],
+  "license": "MIT"
+}

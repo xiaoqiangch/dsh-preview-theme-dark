@@ -1,0 +1,10 @@
+# Host half of dsh-preview-theme-dark.
+#
+# The feature itself is entirely browser-side (lib/client.js). This Loader row
+# exists so the package is a normal enabled plugin: @deepseek-ai/dsh-client-modules
+# scans enabled entries, sees the "dsh.client" field in package.json, and ships
+# lib/client.js to the Web GUI, where it styles the built-in PDF / Word / Excel
+# sidebar previews and registers the header switch + palette control.
+- insert:
+    - id: preview-theme-dark
+      name: dsh-preview-theme-dark
