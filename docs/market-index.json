@@ -1,0 +1,82 @@
+{
+  "format": 1,
+  "title": {
+    "en": "xiaoqiangch DSH plugins",
+    "zh": "xiaoqiangch 的 DSH 插件"
+  },
+  "description": {
+    "en": "Small, focused DeepSeek Harness plugins maintained by xiaoqiangch.",
+    "zh": "xiaoqiangch 维护的 DeepSeek Harness 小插件。"
+  },
+  "metadata": {
+    "categories": {
+      "appearance": {
+        "title": {
+          "en": "Appearance",
+          "zh": "外观"
+        }
+      }
+    },
+    "labels": {
+      "dark-mode": {
+        "title": {
+          "en": "Dark mode",
+          "zh": "深色模式"
+        }
+      }
+    },
+    "sortKeys": {}
+  },
+  "plugins": [
+    {
+      "name": "dsh-preview-theme-dark",
+      "title": {
+        "en": "Preview Dark Mode",
+        "zh": "预览深色模式"
+      },
+      "description": {
+        "en": "One-click light / dark switch for PDF, Word and Excel sidebar previews, optionally following the system appearance, with separate light and dark paper memories. Display only: the files are never modified.",
+        "zh": "PDF / Word / Excel 侧边栏预览一键切换浅色 / 深色，可跟随系统外观，浅色侧与深色侧的纸张配色分别记忆。只改显示，不改文件。"
+      },
+      "icon": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzYiIGhlaWdodD0iMzYiIHZpZXdCb3g9IjAgMCAzNiAzNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB4PSI0IiB5PSI1IiB3aWR0aD0iMTgiIGhlaWdodD0iMjQiIHJ4PSIyLjUiIHN0cm9rZT0iIzhBQjRGOCIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPHJlY3QgeD0iMTQiIHk9IjkiIHdpZHRoPSIxOCIgaGVpZ2h0PSIyNCIgcng9IjIuNSIgZmlsbD0iIzExMTgyNyIgc3Ryb2tlPSIjNDVFN0E0IiBzdHJva2Utd2lkdGg9IjIiLz4KICA8cmVjdCB4PSIxOCIgeT0iMTQiIHdpZHRoPSIxMCIgaGVpZ2h0PSIyIiByeD0iMSIgZmlsbD0iI0U1RTdFQiIvPgogIDxyZWN0IHg9IjE4IiB5PSIxOSIgd2lkdGg9IjEwIiBoZWlnaHQ9IjIiIHJ4PSIxIiBmaWxsPSIjOUNBM0FGIi8+CiAgPHJlY3QgeD0iMTgiIHk9IjI0IiB3aWR0aD0iNiIgaGVpZ2h0PSIyIiByeD0iMSIgZmlsbD0iIzZCNzI4MCIvPgo8L3N2Zz4K",
+      "author": "xiaoqiangch",
+      "homepage": "https://github.com/xiaoqiangch/dsh-preview-theme-dark#readme",
+      "repository": {
+        "url": "https://github.com/xiaoqiangch/dsh-preview-theme-dark"
+      },
+      "metadata": {
+        "category": "appearance",
+        "keywords": [
+          "dsh",
+          "dsh-plugin",
+          "deepseek-harness",
+          "preview",
+          "pdf",
+          "office",
+          "theme",
+          "background",
+          "dark-mode",
+          "dark"
+        ],
+        "labels": [
+          "dark-mode"
+        ],
+        "sortKeys": {}
+      },
+      "versions": [
+        {
+          "version": "1.0.0",
+          "publishTimestamp": 1793835151,
+          "source": {
+            "type": "git",
+            "url": "https://github.com/xiaoqiangch/dsh-preview-theme-dark",
+            "commit": "18f4b7206c54bb60a75362bcf0243e23bf2dab33"
+          },
+          "engines": {
+            "dsh": ">=0.2.0-rc.1 <0.3.0-0"
+          }
+        }
+      ]
+    }
+  ]
+}

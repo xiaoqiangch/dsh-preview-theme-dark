@@ -58,6 +58,25 @@ dsh plugin --profile web add "file:/绝对路径/dsh-preview-theme-dark"
 
 也可以在插件页「安装第三方插件」里直接填**该目录的绝对路径**。
 
+### 方式 D：从插件市场「发现」页一键安装
+
+本仓库同时维护了一份**插件市场索引**（DSH 自定义插件市场格式 1），加进 DSH 之后就能在插件页的「发现」
+标签页里像应用商店一样浏览并安装：
+
+1. 插件页 → **实验性插件** 旁的**更多** → 启用**自定义插件市场**（重启或随 HMR 生效）；
+2. 插件页切到「**发现**」标签页 → 添加索引源，粘贴下面任一地址：
+
+   ```
+   https://raw.githubusercontent.com/xiaoqiangch/dsh-preview-theme-dark/main/docs/market-index.json
+   https://cdn.jsdelivr.net/gh/xiaoqiangch/dsh-preview-theme-dark@main/docs/market-index.json
+   ```
+
+3. 在「发现」里找到「预览深色模式」，点**安装**即可（走 `git+https` 源，固定到发布提交，不需要 npm 账号）。
+
+> 这套索引也兼容 `plugin_market` agent 工具：让 DSH 列出已配置索引里的插件，再把条目的
+> `install_bundle` 参数交给插件管理器。索引文件由 `node scripts/build-market-index.mjs` 从
+> `package.json` 生成，发布新版本后重新跑一次并提交即可。
+
 ---
 
 装好后确认一下：`dsh --profile web --dump-config | grep preview-theme-dark` 应该能看到
@@ -154,6 +173,8 @@ dsh-preview-theme-dark/
   lib/client.js         # 全部功能：样式、token、标题栏按钮、配色面板（纯 React.createElement）
   locale/{zh,en}.json   # 插件管理里显示的名称 / 描述
   icon.svg              # 插件图标
+  docs/market-index.json # 插件市场索引（格式 1，指向本仓库固定提交）
+  scripts/build-market-index.mjs # 从 package.json 重新生成上面的索引
   README.md             # 本文件
   LICENSE               # MIT（含上游版权声明）
   CHANGELOG.md
