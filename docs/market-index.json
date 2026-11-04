@@ -66,11 +66,11 @@
       "versions": [
         {
           "version": "1.0.0",
-          "publishTimestamp": 1793835151,
+          "publishTimestamp": 1793836222,
           "source": {
             "type": "git",
             "url": "https://github.com/xiaoqiangch/dsh-preview-theme-dark",
-            "commit": "18f4b7206c54bb60a75362bcf0243e23bf2dab33"
+            "commit": "10253f42ac60519294fb5b0d681b4d6153a36e61"
           },
           "engines": {
             "dsh": ">=0.2.0-rc.1 <0.3.0-0"
