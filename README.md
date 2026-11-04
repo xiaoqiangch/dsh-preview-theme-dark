@@ -179,3 +179,25 @@ dsh-preview-theme-dark/
   LICENSE               # MIT（含上游版权声明）
   CHANGELOG.md
 ```
+
+## 维护者：发新版本怎么做
+
+1. 改 `package.json` 的 `version`，在 `CHANGELOG.md` 记一条；
+2. `npm pack` 得到 `dsh-preview-theme-dark-<版本>.tgz`（会被 `.gitignore` 忽略，不提交）；
+3. `git commit && git tag v<版本> && git push --tags`；
+4. `gh release create v<版本> dsh-preview-theme-dark-<版本>.tgz --title ... --notes-file ...`，
+   把 `.tgz` 挂到 Release 上（方式 A、B 用的就是它）；
+5. `node scripts/build-market-index.mjs` 重新生成市场索引（会把安装源固定到当前提交），提交并推送；
+6. 可选：发布到 npm——
+
+   ```bash
+   npm login                      # 首次需要
+   npm publish --access public
+   ```
+
+   发布后其他机器的安装方式可以简化成 `dsh plugin --profile web add dsh-preview-theme-dark`
+   （`publishConfig.access` 已设为 public，`files` 已限定发布内容）。
+
+发布前自检：`node --check lib/index.js`、`node -e "new (require('vm').Script)(require('fs').readFileSync('lib/client.js','utf8'))"`、
+以及在干净的 `DSH_HOME` 里 `dsh plugin --profile web add <tgz>` + `dsh --profile web --dump-config` 能看到
+`id: preview-theme-dark`。
