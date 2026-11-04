@@ -17,4 +17,4 @@
 
 - 使用独立的包名 `dsh-preview-theme-dark`、Loader 行 id `preview-theme-dark`、CSS 前缀 `dsh-ptd-`、
   DOM 属性 `data-dsh-preview-theme-dark`、token 覆盖层 `dsh-preview-theme-dark`，可与上游插件共存。
-- 补齐 repository / homepage / bugs / publishConfig / engines 等发布元数据与 README、LICENSE、截图。
+- 补齐 repository / homepage / bugs / publishConfig / engines 等发布元数据与 README、LICENSE、CHANGELOG。

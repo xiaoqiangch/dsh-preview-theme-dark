@@ -32,7 +32,10 @@ PowerPoint（转 PDF）、Excel（xlsx/xls/csv/tsv）都适用。**只改显示�
 3. 按页面提示重启 DSH（profile 没开 HMR 时需要重启；开着 HMR 会自动生效）。
 4. 验证：打开任意 PDF / Word / Excel 预览，标题栏最右边出现 **☀ / ☾** 与调色盘两个按钮。
 
-> 安装页也接受 npm 包名、Git 仓库地址和本地目录；`.tgz` 直链走的是 pnpm 的 tarball 安装路径，不经过 npm 源。
+> 安装页的输入框也接受 npm 包名、Git 仓库地址、本地绝对路径和 **`.tgz` 直链/本地文件**（按钮副标题只写了
+> 「npm 包、Git 仓库和本地目录」，没列 tarball，但实现上 `parseInstallSpec` 明确接受 `.tgz` / `.tar.gz`）。
+> 如果报「URL 必须指向 git 仓库或 tarball」，通常说明链接不是以 `.tgz` 结尾。
+> `.tgz` 本体不经过 npm 源下载，但 pnpm 仍会用已配置的安装源解析其余依赖。
 
 ### 方式 B：命令行安装
 
@@ -42,8 +45,11 @@ dsh plugin --profile web add "<tgz-url>"
 # 或：dsh plugin --profile web add "https://github.com/xiaoqiangch/dsh-preview-theme-dark/releases/download/v1.0.0/dsh-preview-theme-dark-1.0.0.tgz"
 ```
 
-`dsh plugin add` 会把依赖写进 profile、并把组合包**自动追加到** `dsh.profile.bundles`。之后重启该
-profile（`dsh web`）即可生效。如果只想让某台机器临时试试，也可以先下载 `.tgz` 再用本地绝对路径安装：
+`dsh plugin add` 会把依赖写进 profile，并在包**声明了 `dsh.bundle`** 时把它自动追加到
+`dsh.profile.bundles`（本包声明了）。之后重启该 profile 即可生效——直接跑 `dsh web`，**不要**写成
+`dsh web --profile web`（CLI 只允许 `--profile` 出现一次，会报 `select a profile only once`）。
+
+如果只想让某台机器临时试试，也可以先下载 `.tgz` 再用本地绝对路径安装：
 
 ```bash
 dsh plugin --profile web add "/绝对路径/dsh-preview-theme-dark-1.0.0.tgz"
@@ -57,6 +63,8 @@ dsh plugin --profile web add "file:/绝对路径/dsh-preview-theme-dark"
 ```
 
 也可以在插件页「安装第三方插件」里直接填**该目录的绝对路径**。
+
+> `file:` 安装是**拷贝**进 profile，不是软链；改完源码要重新 `add` 一次才会生效。
 
 ### 方式 D：从插件市场「发现」页一键安装
 
@@ -82,6 +90,9 @@ dsh plugin --profile web add "file:/绝对路径/dsh-preview-theme-dark"
 装好后确认一下：`dsh --profile web --dump-config | grep preview-theme-dark` 应该能看到
 `id: preview-theme-dark` 这一行（说明组合包已被 profile 选中并合入配置树）。
 
+> 干净环境启动时可能出现 `dsh: warning: 1 entry did not activate — ui-deepseek-model-label-1017`：
+> 这是 DSH 0.2.1-rc.5 自带 web 组合包引用了 Desktop 版才有的包，**与本插件无关**（不装任何插件也照样出现）。
+
 ## 使用
 
 打开右侧边栏里任意 PDF / Word / PPT / Excel 预览，标题栏最右边有两个控件：
@@ -96,8 +107,8 @@ dsh plugin --profile web add "file:/绝对路径/dsh-preview-theme-dark"
   - 底部「恢复默认」回到初始状态。
 
 选择会保存在 localStorage，重启 / 刷新后仍然生效；在面板里点「原色」或「恢复默认」就完全还原。
-首次运行时如果检测到上游插件（`dsh-preview-theme`）存下的旧偏好，会自动读过来并改用本插件自己的键
-`dsh-preview-theme-dark:v1`，两个插件可以共存、互不干扰。
+首次运行时如果检测到旧键 `dsh-preview-theme:v1`（上游插件或任何沿用该键的旧版本写下的），会自动读过来
+并改用本插件自己的键 `dsh-preview-theme-dark:v1`（旧键保留不动），两个插件可以共存、互不干扰。
 
 ## 配色表
 
@@ -173,8 +184,9 @@ dsh-preview-theme-dark/
   lib/client.js         # 全部功能：样式、token、标题栏按钮、配色面板（纯 React.createElement）
   locale/{zh,en}.json   # 插件管理里显示的名称 / 描述
   icon.svg              # 插件图标
-  docs/market-index.json # 插件市场索引（格式 1，指向本仓库固定提交）
-  scripts/build-market-index.mjs # 从 package.json 重新生成上面的索引
+  docs/market-index.json # 插件市场索引（格式 1，指向本仓库固定提交）——仓库内文件，不随 .tgz 发布
+  scripts/build-market-index.mjs        # 生成上面的索引 —— 仓库内文件，不随 .tgz 发布
+  scripts/smoke-test.mjs                # 无依赖冒烟测试 —— 仓库内文件，不随 .tgz 发布
   README.md             # 本文件
   LICENSE               # MIT（含上游版权声明）
   CHANGELOG.md
