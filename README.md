@@ -198,6 +198,12 @@ dsh-preview-theme-dark/
    发布后其他机器的安装方式可以简化成 `dsh plugin --profile web add dsh-preview-theme-dark`
    （`publishConfig.access` 已设为 public，`files` 已限定发布内容）。
 
-发布前自检：`node --check lib/index.js`、`node -e "new (require('vm').Script)(require('fs').readFileSync('lib/client.js','utf8'))"`、
-以及在干净的 `DSH_HOME` 里 `dsh plugin --profile web add <tgz>` + `dsh --profile web --dump-config` 能看到
-`id: preview-theme-dark`。
+发布前自检：
+
+```bash
+node --check lib/index.js                 # Host 半边语法
+node scripts/smoke-test.mjs               # 无依赖冒烟测试：注册 id、标题栏动作、浅深切换、偏好持久化、旧键迁移
+# 干净环境安装验证：
+DSH_HOME=/tmp/dsh-verify dsh plugin --profile web add "<tgz 或 Release 链接>"
+DSH_HOME=/tmp/dsh-verify dsh --profile web --dump-config | grep preview-theme-dark
+```
